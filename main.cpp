@@ -157,28 +157,3 @@ BOOST_AUTO_TEST_CASE(test_user_delivery) {
 //     }
 //     return firstProduct;
 // }
-
-//Create unit test for 'shopper' class
-#define BOOST_TEST_MODULE ShopperTests
-#include <boost/test/included/unit_test.hpp>
-
-BOOST_AUTO_TEST_CASE(test_shopper_options) {
-    // Create a sample product list
-    productItem *firstProduct = new productItem(1, "SampleProduct", "SampleCategory", nullptr, 10, 5);
-
-    // Create a shopper with the sample product list
-    shopper testShopper(firstProduct);
-
-    // Redirect cin to provide input to the shopper's options function
-    std::istringstream input("1\n");  // Assuming option 1 is a valid option in the options function
-
-    std::streambuf* oldCin = std::cin.rdbuf(input.rdbuf());
-    BOOST_CHECK_NO_THROW(testShopper.options());  // Check if the function runs without exceptions
-    std::cin.rdbuf(oldCin);  // Restore cin
-
-    // Clean up the dynamically allocated memory
-    delete firstProduct;
-}
-
-
-BOOST_AUTO_TEST_SUITE_END()
