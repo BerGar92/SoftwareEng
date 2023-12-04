@@ -16,7 +16,6 @@ public:
     ~basketItem() = default;
 
     productItem* get_product();
-    void set_product(productItem* product);
     address* get_location();
 
     int get_quantity();

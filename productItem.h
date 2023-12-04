@@ -15,20 +15,12 @@ public:
     ~productItem() = default;
 
     int get_productNumber();
-    void set_productNumber(int no);
 
     string get_name();
-    void set_name(string name);
-
-    string get_catergory();
-    void set_catergory(string cat);
 
     address* get_location();
-    string get_locationName();
-    void set_location(address* loc);
 
     int get_price();
-    void set_price(int cost);
 
     int get_stockCount();
     void set_stockCount(int amount);

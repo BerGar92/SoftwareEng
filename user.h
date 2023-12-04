@@ -49,7 +49,6 @@ private:
     int noAddresses = 0;
 
     int deliveryStage;
-    string deliveryOrder[5] = {"Wherehouse", "Regional", "International", "Regional", "Local"};
 
 };
 
