@@ -364,37 +364,37 @@ void user::checkout() {
     cout << "Are you sure you want to checkout?" << endl;
     cout << "[y/n]" << endl;
     cin >> choice;
-    if (choice == 'y') {
-        ///Select delivery address
-        address* deliveryAddress = NULL;
-        if (firstAddress == NULL) {
-            cout << "Enter delivery address" << endl;
+
+    ///Select delivery address
+    address* deliveryAddress = NULL;
+    if (firstAddress == NULL) {
+        cout << "Enter delivery address" << endl;
+        add_address();
+    }
+    else {
+        print_addresses();
+        choice = 'o';
+        cout << "Do you want to enter a new delivery address? [y/n]" << endl;
+        cin >> choice;
+        if (choice == 'y') {
             add_address();
-        }
-        else {
             print_addresses();
-            choice = 'o';
-            cout << "Do you want to enter a new delivery address? [y/n]" << endl;
-            cin >> choice;
-            if (choice == 'y') {
-                add_address();
-                print_addresses();
-            }
-
-            cout << "Enter delivery address number" << endl;
-            int addressNo;
-            cin >> addressNo;
-            address* currentAddress = firstAddress;
-            while (currentAddress->get_number() != addressNo) {
-                currentAddress = currentAddress->get_nextAddress();
-                if (currentAddress == NULL) {
-                    cout << "Invalid address" << endl;
-                    return;
-                }
-            }
-            deliveryAddress = currentAddress;
         }
 
+        cout << "Enter delivery address number" << endl;
+        int addressNo;
+        cin >> addressNo;
+        address* currentAddress = firstAddress;
+        while (currentAddress->get_number() != addressNo) {
+            currentAddress = currentAddress->get_nextAddress();
+            if (currentAddress == NULL) {
+                cout << "Invalid address" << endl;
+                return;
+            }
+        }
+        deliveryAddress = currentAddress;
+    }
+    if (choice == 'y') {
         int total = get_basketTotal();
         address* from = firstBasket->get_location();
         if (from->get_country() == deliveryAddress->get_country()) {
